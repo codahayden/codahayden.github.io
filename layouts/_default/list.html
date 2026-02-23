@@ -1,0 +1,28 @@
+{{ define "main" }}
+  {{ if .IsHome }}
+    <section class="hero">
+      <h1>coda 的日记</h1>
+      <p>记录每天琐事、想法和灵感。</p>
+    </section>
+  {{ else }}
+    <section class="hero compact">
+      <h1>{{ .Title }}</h1>
+    </section>
+  {{ end }}
+
+  <section class="post-list">
+    {{ $posts := .RegularPages.ByDate.Reverse }}
+    {{ if .IsHome }}
+      {{ $posts = where site.RegularPages "Section" "posts" | first 20 }}
+    {{ end }}
+    {{ range $posts }}
+      <article class="post-card">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="meta">{{ .Date.Format "2006-01-02 15:04 MST" }}</p>
+        <p>{{ .Summary | plainify }}</p>
+      </article>
+    {{ else }}
+      <p class="empty-state">还没有文章，先发布第一篇日记吧。</p>
+    {{ end }}
+  </section>
+{{ end }}

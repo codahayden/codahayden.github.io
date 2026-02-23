@@ -1,0 +1,20 @@
+baseURL = "https://codahayden.github.io/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+title = "coda 的博客"
+timeZone = "Asia/Shanghai"
+hasCJKLanguage = true
+enableRobotsTXT = true
+
+[pagination]
+pagerSize = 10
+
+[params]
+description = "coda 的日记与琐事"
+
+[permalinks]
+posts = "/:slug/"
+
+[taxonomies]
+tag = "tags"
+category = "categories"

@@ -1,0 +1,152 @@
+:root {
+  --ink: #1e1a17;
+  --paper: #f7f1e7;
+  --accent: #a9471f;
+  --accent-soft: #ffd6c6;
+  --muted: #6f635c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 20% 10%, #fff7e8 0%, var(--paper) 45%, #f0e6d9 100%);
+}
+
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(120deg, rgba(169, 71, 31, 0.08), transparent 40%), linear-gradient(300deg, rgba(34, 85, 63, 0.08), transparent 45%);
+  z-index: -1;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  width: min(860px, 92vw);
+  margin: 0 auto;
+}
+
+.site-header {
+  padding: 2.8rem 0 1.2rem;
+}
+
+.brand {
+  display: inline-block;
+  text-decoration: none;
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.tagline {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+.hero {
+  margin: 1rem 0 2rem;
+  padding: 1.2rem 1.4rem;
+  border-left: 5px solid var(--accent);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.hero h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.6rem, 3.3vw, 2.4rem);
+}
+
+.hero.compact {
+  margin-bottom: 1rem;
+}
+
+.post-list {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 2.5rem;
+}
+
+.post-card {
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.65);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.post-card h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.post-card h2 a {
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.meta {
+  margin: 0.4rem 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.post {
+  padding-bottom: 2rem;
+}
+
+.post-header {
+  margin-bottom: 1.6rem;
+}
+
+.post-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.mood {
+  margin: 0.3rem 0;
+  color: var(--accent);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags span {
+  display: inline-block;
+  background: var(--accent-soft);
+  padding: 0.16rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.post-body {
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+
+.back-link {
+  color: var(--accent);
+}
+
+.empty-state {
+  color: var(--muted);
+}
+
+.site-footer {
+  padding: 2rem 0 2.4rem;
+  color: var(--muted);
+}

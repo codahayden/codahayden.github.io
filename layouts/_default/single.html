@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <article class="post">
+    <header class="post-header">
+      <h1>{{ .Title }}</h1>
+      <p class="meta">{{ .Date.Format "2006-01-02 15:04 MST" }}</p>
+      {{ with .Params.mood }}
+        <p class="mood">Mood: {{ . }}</p>
+      {{ end }}
+      {{ with .Params.tags }}
+        <p class="tags">
+          {{ range . }}<span>#{{ . }}</span>{{ end }}
+        </p>
+      {{ end }}
+    </header>
+    <section class="post-body">
+      {{ .Content }}
+    </section>
+    <p><a class="back-link" href="/">返回首页</a></p>
+  </article>
+{{ end }}
