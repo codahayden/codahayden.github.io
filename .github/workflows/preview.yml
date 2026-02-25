@@ -21,12 +21,12 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: "0.142.0"
           extended: true # 如果你用的主题需要 SCSS/SASS，必须设为 true
 
       - name: Build
-        run: hugo --minify --baseURL "${{ github.event.repository.homepage }}/pr-preview/pr-${{ github.event.number }}/"
-        # 注意：这里的 baseURL 逻辑是为了适配预览路径，通常 Action 会自动处理，但手动指定更稳妥
+        run: hugo --minify --baseURL "/pr-preview/pr-${{ github.event.number }}/" --relativeURLs
+        # 通过在构建时固定 PR 预览子路径并启用相对 URL，避免链接跳出预览目录
 
       - name: Deploy Preview
         uses: rossjrw/pr-preview-action@v1
