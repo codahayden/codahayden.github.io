@@ -1,0 +1,36 @@
+name: Deploy PR previews
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write # 允许 Action 写入分支
+  pull-requests: write # 允许 Action 在 PR 里发评论
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # 如果你的 Hugo 主题是 submodule，必须开启这个
+          fetch-depth: 0    # 获取完整的 git 历史
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true # 如果你用的主题需要 SCSS/SASS，必须设为 true
+
+      - name: Build
+        run: hugo --minify --baseURL "${{ github.event.repository.homepage }}/pr-preview/pr-${{ github.event.number }}/"
+        # 注意：这里的 baseURL 逻辑是为了适配预览路径，通常 Action 会自动处理，但手动指定更稳妥
+
+      - name: Deploy Preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: public
+          preview-branch: gh-pages # 或者你用来部署静态页面的分支
+          umbrella-dir: pr-preview # 所有预览都会放在这个文件夹下
