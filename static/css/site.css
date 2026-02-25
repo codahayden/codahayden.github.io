@@ -1,9 +1,11 @@
 :root {
-  --ink: #1e1a17;
-  --paper: #f7f1e7;
-  --accent: #a9471f;
-  --accent-soft: #ffd6c6;
-  --muted: #6f635c;
+  --ink: #0d0d0d;
+  --paper: #ffffff;
+  --accent: #10a37f;
+  --accent-soft: #d1f2e6;
+  --muted: #5e5e5e;
+  --border: #e5e5e5;
+  --bg-subtle: #f9f9f9;
 }
 
 * {
@@ -13,17 +15,11 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at 20% 10%, #fff7e8 0%, var(--paper) 45%, #f0e6d9 100%);
-}
-
-.bg-mesh {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(120deg, rgba(169, 71, 31, 0.08), transparent 40%), linear-gradient(300deg, rgba(34, 85, 63, 0.08), transparent 45%);
-  z-index: -1;
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .site-header,
@@ -35,60 +31,66 @@ body {
 
 .site-header {
   padding: 2.8rem 0 1.2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
 }
 
 .brand {
   display: inline-block;
   text-decoration: none;
-  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(1.6rem, 3.3vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .tagline {
   margin: 0.5rem 0 0;
   color: var(--muted);
+  font-size: 1.05rem;
 }
 
 .hero {
   margin: 1rem 0 2rem;
-  padding: 1.2rem 1.4rem;
-  border-left: 5px solid var(--accent);
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(2px);
+  padding: 1.6rem 1.8rem;
+  border-left: 4px solid var(--accent);
+  background: var(--bg-subtle);
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .hero h1 {
   margin: 0 0 0.4rem;
-  font-size: clamp(1.6rem, 3.3vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 600;
 }
 
 .hero.compact {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .post-list {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
   padding-bottom: 2.5rem;
 }
 
 .post-card {
-  padding: 1rem 1.2rem;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.65);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  padding: 1.4rem 1.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  border-color: #ccc;
 }
 
 .post-card h2 {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .post-card h2 a {
@@ -96,10 +98,14 @@ body {
   color: var(--ink);
 }
 
+.post-card h2 a:hover {
+  color: var(--accent);
+}
+
 .meta {
   margin: 0.4rem 0 0.8rem;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .post {
@@ -107,15 +113,26 @@ body {
 }
 
 .post-header {
-  margin-bottom: 1.6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .post-header h1 {
   margin-bottom: 0.5rem;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .mood {
   margin: 0.3rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.mood::before {
+  content: "✧ ";
   color: var(--accent);
 }
 
@@ -123,30 +140,67 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .tags span {
   display: inline-block;
-  background: var(--accent-soft);
-  padding: 0.16rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
+  background: var(--bg-subtle);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .post-body {
-  line-height: 1.85;
+  line-height: 1.7;
   font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.post-body p {
+  margin-bottom: 1.5rem;
+}
+
+.post-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post-body a:hover {
+  text-decoration: none;
 }
 
 .back-link {
-  color: var(--accent);
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  transition: background 0.15s ease;
+}
+
+.back-link:hover {
+  background: var(--bg-subtle);
 }
 
 .empty-state {
   color: var(--muted);
+  font-style: italic;
 }
 
 .site-footer {
-  padding: 2rem 0 2.4rem;
+  padding: 2rem 0 3rem;
   color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
 }
+
